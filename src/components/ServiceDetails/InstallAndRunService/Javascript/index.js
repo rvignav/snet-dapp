@@ -6,30 +6,36 @@ const Javascript = ({ classes }) => {
   return (
     <section>
       <h2>Install</h2>
+      <br />
       <div>
-        Install the SDK using npm <br />
+        <span>
+          Install the SDK using npm <br />
+        </span>
         <CodeSnippet>npm install snet-sdk</CodeSnippet>
       </div>
       <br />
       <div>
-        To generate the gRPC client libraries, you need the SingularityNET
-        Command Line Interface, or CLI, which you can install using pip
+        <span>
+          To generate the gRPC client libraries, you need the SingularityNET Command Line Interface, or CLI, which you
+          can install using pip
+        </span>
         <CodeSnippet>pip install snet-cli</CodeSnippet>
       </div>
       <br />
       <div>
-        Once you have the CLI installed, run the following command to generate
-        gRPC stubs for service <br />
-        <CodeSnippet>
-          snet sdk generate-client-library nodejs centivize-org centivize
-        </CodeSnippet>{" "}
+        <span>
+          Once you have the CLI installed, run the following command to generate gRPC stubs for service <br />
+        </span>
+        <CodeSnippet>snet sdk generate-client-library nodejs centivize-org centivize</CodeSnippet>
         <br />
-        Run the code <br />
+        <span>
+          Run the code <br />
+        </span>
         <CodeSnippet>
           import services from '&lt;path_to_grpc_service_file&gt;' <br />
           import messages from '&lt;path_to_grpc_message_file&gt;' <br />
-          const client = sdk.createServiceClient("centivize-org", "centivize",
-          "&lt;services.&lt;ClientStub&gt;") <br />
+          const client = sdk.createServiceClient("centivize-org", "centivize", <br />
+          "&lt;services.ClientStub&gt;") <br />
         </CodeSnippet>
       </div>
     </section>

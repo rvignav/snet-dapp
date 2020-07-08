@@ -14,20 +14,14 @@ const Python = ({ classes }) => {
       </div>
       <div>
         <span>
-          To generate the gRPC client libraries, you need the SingularityNET
-          Command Line Interface, or CLI, which you can install using pip
+          To generate the gRPC client libraries, you need the SingularityNET Command Line Interface, or CLI, which you
+          can install using pip
         </span>
         <CodeSnippet>pip install snet-cli</CodeSnippet>
       </div>
       <div>
-        <span>
-          Once you have the CLI installed, run the following command to generate
-          gRPC stubs for service{" "}
-        </span>
-        <CodeSnippet>
-          snet sdk generate-client-library python &lt;centivize-org&gt;
-          &lt;centivize&gtgt;
-        </CodeSnippet>
+        <span>Once you have the CLI installed, run the following command to generate gRPC stubs for service </span>
+        <CodeSnippet>snet sdk generate-client-library python &lt;centivize-org&gt; &lt;centivize&gt;</CodeSnippet>
       </div>
       <div>
         <span>Run the code</span>
@@ -38,10 +32,8 @@ const Python = ({ classes }) => {
           from config import config <br /> <br />
           sdk = SnetSDK(config) <br />
           service_client = sdk.create_service_client( <br />
-          centivize-org, centivize, example_service_pb2_grpc.CalculatorStub){" "}
-          <br />
-          request = example_service_pb2.Paragraphs(par1="Paragraph 1",
-          par2="Paragraph 2") <br />
+          centivize-org, centivize, example_service_pb2_grpc.Centivize) <br />
+          request = example_service_pb2.Paragraphs(par1="Paragraph 1", par2="Paragraph 2") <br />
         </CodeSnippet>
       </div>
     </section>
