@@ -11,9 +11,15 @@ import StyledTabs from "./StyledTabs";
 import AboutService from "./AboutService";
 import InstallAndRunService from "./InstallAndRunService";
 import { useStyles } from "./styles";
-import NotificationBar, { notificationBarTypes } from "../common/NotificationBar";
+import NotificationBar, {
+  notificationBarTypes,
+} from "../common/NotificationBar";
 import { serviceDetailsActions } from "../../Redux/actionCreators";
-import { pricing, serviceDetails, groupInfo } from "../../Redux/reducers/ServiceDetailsReducer";
+import {
+  pricing,
+  serviceDetails,
+  groupInfo,
+} from "../../Redux/reducers/ServiceDetailsReducer";
 import ErrorBox from "../common/ErrorBox";
 
 class ServiceDetails extends Component {
@@ -22,7 +28,8 @@ class ServiceDetails extends Component {
     alert: {},
     offlineNotication: {
       type: notificationBarTypes.WARNING,
-      message: "Service temporarily offline by the provider. Please check back later.",
+      message:
+        "Service temporarily offline by the provider. Please check back later.",
     },
   };
 
@@ -49,12 +56,21 @@ class ServiceDetails extends Component {
     }
   };
 
-  handleTabChange = activeTab => {
+  handleTabChange = (activeTab) => {
     this.setState({ activeTab });
+    console.log("Handling tab change");
   };
 
   render() {
-    const { classes, service, pricing, loading, error, history, groupInfo } = this.props;
+    const {
+      classes,
+      service,
+      pricing,
+      loading,
+      error,
+      history,
+      groupInfo,
+    } = this.props;
     const { offlineNotication } = this.state;
 
     if (isEmpty(service) || error) {
@@ -74,12 +90,23 @@ class ServiceDetails extends Component {
       {
         name: "About",
         activeIndex: 0,
-        component: <AboutService service={service} history={history} serviceAvailable={service.is_available} />,
+        component: (
+          <AboutService
+            service={service}
+            history={history}
+            serviceAvailable={service.is_available}
+          />
+        ),
       },
       {
         name: "Install and Run",
         activeIndex: 1,
-        component: <InstallAndRunService service={service} groupId={groupInfo.group_id} />,
+        component: (
+          <InstallAndRunService
+            service={service}
+            groupId={groupInfo.group_id}
+          />
+        ),
       },
     ];
 
@@ -99,9 +126,17 @@ class ServiceDetails extends Component {
               organizationName={service.organization_name}
               display_name={service.display_name}
               serviceImg={service.assets_url && service.assets_url.hero_image}
-              orgImg={service.org_assets_url && service.org_assets_url.hero_image}
-              star_rating={service.service_rating && service.service_rating.rating}
-              totalRating={service.service_rating ? service.service_rating.total_users_rated : 0}
+              orgImg={
+                service.org_assets_url && service.org_assets_url.hero_image
+              }
+              star_rating={
+                service.service_rating && service.service_rating.rating
+              }
+              totalRating={
+                service.service_rating
+                  ? service.service_rating.total_users_rated
+                  : 0
+              }
             />
             <PricingDetails
               serviceAvailable={service.is_available}
@@ -111,7 +146,11 @@ class ServiceDetails extends Component {
               history={history}
             />
           </div>
-          <StyledTabs tabs={tabs} activeTab={activeTab} onTabChange={this.handleTabChange} />
+          <StyledTabs
+            tabs={tabs}
+            activeTab={activeTab}
+            onTabChange={this.handleTabChange}
+          />
         </Grid>
       </div>
     );
@@ -133,8 +172,12 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  fetchServiceDetails: (orgId, serviceId) => dispatch(serviceDetailsActions.fetchServiceDetails(orgId, serviceId)),
+const mapDispatchToProps = (dispatch) => ({
+  fetchServiceDetails: (orgId, serviceId) =>
+    dispatch(serviceDetailsActions.fetchServiceDetails(orgId, serviceId)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(useStyles)(ServiceDetails));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(useStyles)(ServiceDetails));

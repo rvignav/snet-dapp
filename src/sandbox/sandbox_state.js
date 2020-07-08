@@ -17,7 +17,18 @@ export default {
       display_name: "Centivize",
       description: "Centivize.",
       url: "https://github.com/rvignav/snet-dapp",
-      tags: ["telemedicine", "nlp"],
+      tags: [
+        "summary",
+        "similarity",
+        "telemedicine",
+        "nlp",
+        "healthcare",
+        "transformers",
+        "ai",
+        "machine-learning",
+        "sentence-transformers",
+        "nltk",
+      ],
       is_available: 1,
       groups: [
         {
