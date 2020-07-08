@@ -11,7 +11,7 @@ const Routes = {
   USER_PROFILE: "userprofile",
   GET_STARTED: "getstarted",
   hash: {
-    SERVICE_DEMO: "#demo",
+    SERVICE_DEMO: "", // # demo
   },
 };
 
