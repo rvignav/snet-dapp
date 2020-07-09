@@ -27,11 +27,11 @@ class InstallAndRunService extends Component {
     alert: {},
   };
 
-  handleTabChange = activeTab => {
+  handleTabChange = (activeTab) => {
     this.setState({ activeTab, alert: {}, downloadTokenURL: "" });
   };
 
-  generateToken = async e => {
+  generateToken = async (e) => {
     e.preventDefault();
     try {
       this.setState({ alert: {}, downloadTokenURL: "" });
@@ -45,15 +45,26 @@ class InstallAndRunService extends Component {
         );
         this.setState({ downloadTokenURL });
       } else {
-        this.setState({ alert: { type: alertTypes.ERROR, message: "invalid public key" } });
+        this.setState({
+          alert: { type: alertTypes.ERROR, message: "invalid public key" },
+        });
       }
     } catch (e) {
-      this.setState({ alert: { type: alertTypes.ERROR, message: "Unable to download the token. Please try later" } });
+      this.setState({
+        alert: {
+          type: alertTypes.ERROR,
+          message: "Unable to download the token. Please try later",
+        },
+      });
     }
   };
 
-  handlePublicKey = event => {
-    this.setState({ publickey: event.currentTarget.value, alert: {}, downloadTokenURL: "" });
+  handlePublicKey = (event) => {
+    this.setState({
+      publickey: event.currentTarget.value,
+      alert: {},
+      downloadTokenURL: "",
+    });
   };
 
   render() {
@@ -65,15 +76,25 @@ class InstallAndRunService extends Component {
     ];
     return (
       <Grid container spacing={24} className={classes.installAndRunContainer}>
-        <Grid item xs={12} sm={12} md={8} lg={8} className={classes.overViewContainer}>
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={8}
+          lg={8}
+          className={classes.overViewContainer}
+        >
           <div className={classes.integrationSetupContainer}>
             <h3>Integration Setup</h3>
             <div className={classes.overViewContainer}>
-              <Typography className={classes.intSetupTitle}>Free Call Authentication Token</Typography>
+              <Typography className={classes.intSetupTitle}>
+                Free Call Authentication Token
+              </Typography>
               <Typography className={classes.intSetupDesc}>
-                Generate the free call token to use in your SDK. The address used to generate this token should be the
-                same as the identity specified in your SDK configuation. This will allow you to invoke the service from
-                your SDK on a trial basis
+                Generate the free call token to use in your SDK. The address
+                used to generate this token should be the same as the identity
+                specified in your SDK configuation. This will allow you to
+                invoke the service from your SDK on a trial basis
               </Typography>
               <div className={classes.textfieldContainer}>
                 <div>
@@ -114,7 +135,11 @@ class InstallAndRunService extends Component {
           <div className={classes.integrationSetupContainer}>
             <h3>Installation and Execution</h3>
             <div className={classes.integrationContent}>
-              <StyledTabs tabs={tabs} onTabChange={this.handleTabChange} activeTab={activeTab} />
+              <StyledTabs
+                tabs={tabs}
+                onTabChange={this.handleTabChange}
+                activeTab={activeTab}
+              />
             </div>
           </div>
         </Grid>
@@ -126,8 +151,13 @@ class InstallAndRunService extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   downloadAuthToken: (serviceid, groupid, publicKey, orgid) =>
-    dispatch(serviceActions.downloadAuthToken(serviceid, groupid, publicKey, orgid)),
+    dispatch(
+      serviceActions.downloadAuthToken(serviceid, groupid, publicKey, orgid)
+    ),
 });
-export default connect(null, mapDispatchToProps)(withStyles(useStyles)(InstallAndRunService));
+export default connect(
+  null,
+  mapDispatchToProps
+)(withStyles(useStyles)(InstallAndRunService));
