@@ -6,7 +6,7 @@ import CodeSnippet from "../../../common/CodeSnippet";
 
 const Javascript = ({ classes }) => {
   return (
-    <section className={classes.pythonMainContainer}>
+    <section className={classes.jsMainContainer}>
       <h2>Install</h2>
       <br />
       <div>
