@@ -25,7 +25,10 @@ const CreatorDetails = ({ classes, organizationName, orgImg, contacts }) => {
         </div>
         <div className={classes.footer}>
           <span onClick={() => setShowContacts(true)}>
-            <ChatBubbleOutlineIcon fontSize="small" /> Contact
+            <ChatBubbleOutlineIcon fontSize="small" />{" "}
+            <a style={{ textDecoration: "none", color: "#488BFF" }} href="mailto:centivize@gmail.com">
+              Contact
+            </a>
           </span>
         </div>
       </div>
