@@ -8,27 +8,29 @@ import HoverIcon from "../../standardComponents/HoverIcon";
 import OutlinedDropDown from "../../common/OutlinedDropdown";
 import SNETImageUpload from "../../standardComponents/SNETImageUpload";
 
-import { Recognizer } from "./image_recon_pb_service";
-
+import { Centivize } from "./centivize_pb_service";
+ 
 const initialUserInput = {
   methodIndex: "0",
   methodNames: [
     {
-      label: "Flowers",
-      content: "flowers",
+      label: "summarize",
+      content: "summarize",
       value: "0",
     },
     {
-      label: "Dogs",
-      content: "dogs",
+      label: "similarity",
+      content: "similarity",
       value: "1",
     },
   ],
 
-  img_path: undefined,
+  par_1: undefined,
+  par_2: undefined,
+  long_par: undefined,
 };
 
-export default class CNTKImageRecognition extends React.Component {
+export default class CentivizeUI extends React.Component {
   constructor(props) {
     super(props);
     this.submitAction = this.submitAction.bind(this);
@@ -59,7 +61,7 @@ export default class CNTKImageRecognition extends React.Component {
 
   submitAction() {
     const { methodIndex, methodNames, img_path } = this.state;
-    const methodDescriptor = Recognizer[methodNames[methodIndex].content];
+    const methodDescriptor = Centivize[methodNames[methodIndex].content];
     const request = new methodDescriptor.requestType();
 
     request.setImgPath(img_path);

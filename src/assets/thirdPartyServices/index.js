@@ -2,6 +2,7 @@ import React, { lazy } from "react";
 import AlertBox from "../../components/common/AlertBox";
 
 const ExampleService = lazy(() => import("./snet/example_service"));
+const CentivizeUI = lazy(() => import("./centivize-org/centivize"));
 const CNTKImageRecognition = lazy(() => import("./snet/cntk_image_recon"));
 const CNTKNextDayTrend = lazy(() => import("./snet/cntk_next_day_trend"));
 const CNTKLSTMForecast = lazy(() => import("./snet/cntk_lstm_forecast"));
@@ -82,6 +83,10 @@ const addSnetCustomUI = (serviceId, CustomUIComponent) => {
   thirdPartyCustomUIComponents.addCustomUIComponent("snet", serviceId, CustomUIComponent);
 };
 
+const addCentivizeCustomUI = (serviceId, CustomUIComponent) => {
+  thirdPartyCustomUIComponents.addCustomUIComponent("centivize-org", serviceId, CustomUIComponent);
+};
+
 const addMoziCustomUI = (serviceId, CustomUIComponent) => {
   thirdPartyCustomUIComponents.addCustomUIComponent("mozi", serviceId, CustomUIComponent);
 };
@@ -98,6 +103,7 @@ const addAr3CustomUI = (serviceId, CustomUIComponent) => {
 addSnetCustomUI("example-service", ExampleService);
 addSnetCustomUI("freecall", ExampleService);
 addSnetCustomUI("cntk-image-recon", CNTKImageRecognition);
+addCentivizeCustomUI("centivize", CentivizeUI);
 addSnetCustomUI("cntk-next-day-trend", CNTKNextDayTrend);
 addSnetCustomUI("cntk-lstm-forecast", CNTKLSTMForecast);
 addSnetCustomUI("cntk-language-understanding", CNTKLanguageUnderstanding);

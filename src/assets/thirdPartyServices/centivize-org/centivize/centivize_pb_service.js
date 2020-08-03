@@ -3,12 +3,12 @@
 
 /**eslint-disable */
 
-var example_service_pb = require("./example_service_pb");
+var example_service_pb = require("./centivize_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
 var Centivize = (function () {
   function Centivize() {}
-  Centivize.serviceName = "example_service.Centivize";
+  Centivize.serviceName = "centivize.Centivize";
   return Centivize;
 }());
 
