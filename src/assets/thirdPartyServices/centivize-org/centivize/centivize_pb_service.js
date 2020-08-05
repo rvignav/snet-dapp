@@ -1,7 +1,7 @@
 // package: example_service
 // file: example_service.proto
 
-/**eslint-disable */
+/*eslint-disable */
 
 var example_service_pb = require("./centivize_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;

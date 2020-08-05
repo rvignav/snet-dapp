@@ -47,7 +47,7 @@ export default class CentivizeUI extends React.Component {
   }
 
   canBeInvoked() {
-    if(this.state.img_path) return true;
+    if(this.state.long_par || (this.state.par_1 && this.state.par_2)) return true;
     return false;
   }
 

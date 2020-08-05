@@ -1,5 +1,6 @@
 // source: example_service.proto
-/**eslint-disable */
+/*eslint-disable */
+
 
 /**
  * @fileoverview
