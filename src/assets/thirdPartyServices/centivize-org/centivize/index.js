@@ -32,7 +32,6 @@ const initialUserInput = {
 
   par_1: undefined,
   par_2: undefined,
-  long_par: undefined,
 };
 
 export default class CentivizeUI extends React.Component {
@@ -45,18 +44,20 @@ export default class CentivizeUI extends React.Component {
     this.state = {
       ...initialUserInput,
       users_guide:
-        "https://singnet.github.io/dnn-model-services/users_guide/cntk-image-recon.html",
+        "https://centivize.tech",
       code_repo:
-        "https://github.com/singnet/dnn-model-services/tree/master/services/cntk-image-recon",
+        "https://github.com/rvignav/snet-dapp.git",
       reference:
-        "https://cntk.ai/pythondocs/CNTK_301_Image_Recognition_with_Deep_Transfer_Learning.html",
+        "https://centivize.tech",
       response: undefined,
     };
   }
 
   canBeInvoked() {
-    if (this.state.long_par || (this.state.par_1 && this.state.par_2))
-      return true;
+    if (this.state.methodIndex === "0" && this.state.par_1) return true;
+    if (this.state.par_1 && this.state.par_2) {
+        return true;
+    }
     return false;
   }
 
@@ -65,6 +66,7 @@ export default class CentivizeUI extends React.Component {
   }
 
   handleFormUpdate(event) {
+    // set state to be one of two
     this.setState({ [event.target.name]: event.target.value });
   }
 
@@ -114,37 +116,25 @@ export default class CentivizeUI extends React.Component {
               onChange={this.handleFormUpdate}
             />
           </Grid>
-
-          <Grid item xs={12} container justify="center">
-            <FormControl>
-              <InputLabel id="demo-simple-select-helper-label">
-                Dropdown
-              </InputLabel>
-              <Select
-                labelId="demo-simple-select-helper-label"
-                id="demo-simple-select-helper"
-              >
-                <MenuItem value={10}>idk</MenuItem>
-                <MenuItem value={20}>idk number 2</MenuItem>
-              </Select>
-              <FormHelperText>Info about this dropdown</FormHelperText>
-            </FormControl>
-          </Grid>
           <Grid item xs={12} container justify="center">
             <form noValidate autoComplete="off">
               <TextField
-                label="Text field uno"
+                name="par_1"
+                label="Paragraph 1"
                 multiline
                 rows={4}
-                defaultValue=""
                 variant="filled"
+                onChange={this.handleFormUpdate}
+                style={{marginRight: (this.state.methodIndex === "0" ? "0" : "2em")}}
               />
               <TextField
-                label="Text field dos"
+                name="par_2"
+                label="Paragraph 2"
                 multiline
                 rows={4}
-                defaultValue=""
                 variant="filled"
+                onChange={this.handleFormUpdate}
+                style={{display: (this.state.methodIndex === "0" ? "none" : "inline-block")}}
               />
             </form>
           </Grid>
@@ -182,6 +172,7 @@ export default class CentivizeUI extends React.Component {
               color="primary"
               onClick={this.submitAction}
               disabled={!this.canBeInvoked()}
+              style={{marginRight: 0}}
             >
               Invoke
             </Button>
