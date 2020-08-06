@@ -4,6 +4,10 @@ import Button from "@material-ui/core/Button";
 import SvgIcon from "@material-ui/core/SvgIcon";
 import InfoIcon from "@material-ui/icons/Info";
 import { FormControl } from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
+import MenuItem from "@material-ui/core/MenuItem";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormHelperText from "@material-ui/core/FormHelperText";
 
 import HoverIcon from "../../standardComponents/HoverIcon";
 import OutlinedDropDown from "../../common/OutlinedDropdown";
@@ -111,15 +115,13 @@ export default class CentivizeUI extends React.Component {
           </Grid>
 
           <Grid item xs={12} container justify="center">
-            <FormControl className={classes.formControl}>
+            <FormControl>
               <InputLabel id="demo-simple-select-helper-label">
                 Dropdown
               </InputLabel>
               <Select
                 labelId="demo-simple-select-helper-label"
                 id="demo-simple-select-helper"
-                value={age}
-                onChange={handleChange}
               >
                 <MenuItem value={10}>idk</MenuItem>
                 <MenuItem value={20}>idk number 2</MenuItem>
@@ -128,7 +130,7 @@ export default class CentivizeUI extends React.Component {
             </FormControl>
           </Grid>
           <Grid item xs={12} container justify="center">
-            <form className={classes.root} noValidate autoComplete="off">
+            <form noValidate autoComplete="off">
               <TextField
                 label="Text field uno"
                 multiline
