@@ -116,16 +116,18 @@ export default class CentivizeUI extends React.Component {
              */}
             <form className={classes.root} noValidate autoComplete="off">
               <TextField
-                label="Centivize input 1"
-                placeholder="centivize placeholder 1"
+                label="Text field uno"
                 multiline
-                variant="outlined"
+                rows={4}
+                defaultValue=""
+                variant="filled"
               />
               <TextField
-                label="Centivize input 2"
-                placeholder="centivize placeholder 2"
+                label="Text field dos"
                 multiline
-                variant="outlined"
+                rows={4}
+                defaultValue=""
+                variant="filled"
               />
             </form>
           </Grid>
