@@ -111,25 +111,24 @@ export default class CentivizeUI extends React.Component {
           </Grid>
 
           <Grid item xs={12} container justify="center">
-            {/* input goes here
-             */}
+            <FormControl className={classes.formControl}>
+              <InputLabel id="demo-simple-select-helper-label">
+                Dropdown
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-helper-label"
+                id="demo-simple-select-helper"
+                value={age}
+                onChange={handleChange}
+              >
+                <MenuItem value={10}>idk</MenuItem>
+                <MenuItem value={20}>idk number 2</MenuItem>
+              </Select>
+              <FormHelperText>Info about this dropdown</FormHelperText>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} container justify="center">
             <form className={classes.root} noValidate autoComplete="off">
-              <FormControl className={classes.formControl}>
-                <InputLabel id="demo-simple-select-helper-label">
-                  Dropdown
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-helper-label"
-                  id="demo-simple-select-helper"
-                  value={age}
-                  onChange={handleChange}
-                >
-                  <MenuItem value={10}>idk</MenuItem>
-                  <MenuItem value={20}>idk number 2</MenuItem>
-                </Select>
-                <FormHelperText>Info about this dropdown</FormHelperText>
-              </FormControl>
-
               <TextField
                 label="Text field uno"
                 multiline
