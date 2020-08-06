@@ -3,13 +3,14 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import SvgIcon from "@material-ui/core/SvgIcon";
 import InfoIcon from "@material-ui/icons/Info";
+import { FormControl } from "@material-ui/core";
 
 import HoverIcon from "../../standardComponents/HoverIcon";
 import OutlinedDropDown from "../../common/OutlinedDropdown";
 import SNETImageUpload from "../../standardComponents/SNETImageUpload";
 
 import { Centivize } from "./centivize_pb_service";
- 
+
 const initialUserInput = {
   methodIndex: "0",
   methodNames: [
@@ -39,15 +40,19 @@ export default class CentivizeUI extends React.Component {
 
     this.state = {
       ...initialUserInput,
-      users_guide: "https://singnet.github.io/dnn-model-services/users_guide/cntk-image-recon.html",
-      code_repo: "https://github.com/singnet/dnn-model-services/tree/master/services/cntk-image-recon",
-      reference: "https://cntk.ai/pythondocs/CNTK_301_Image_Recognition_with_Deep_Transfer_Learning.html",
+      users_guide:
+        "https://singnet.github.io/dnn-model-services/users_guide/cntk-image-recon.html",
+      code_repo:
+        "https://github.com/singnet/dnn-model-services/tree/master/services/cntk-image-recon",
+      reference:
+        "https://cntk.ai/pythondocs/CNTK_301_Image_Recognition_with_Deep_Transfer_Learning.html",
       response: undefined,
     };
   }
 
   canBeInvoked() {
-    if(this.state.long_par || (this.state.par_1 && this.state.par_2)) return true;
+    if (this.state.long_par || (this.state.par_1 && this.state.par_2))
+      return true;
     return false;
   }
 
@@ -72,7 +77,11 @@ export default class CentivizeUI extends React.Component {
       onEnd: ({ message }) => {
         this.setState({
           ...initialUserInput,
-          response: { status: "Success", top_5: message.getTop5(), delta_time: message.getDeltaTime() },
+          response: {
+            status: "Success",
+            top_5: message.getTop5(),
+            delta_time: message.getDeltaTime(),
+          },
         });
       },
     };
@@ -84,7 +93,13 @@ export default class CentivizeUI extends React.Component {
     return (
       <React.Fragment>
         <Grid container spacing={2} justify="center" alignItems="center">
-          <Grid item xs={12} container justify="center" style={{ textAlign: 'center' }}>
+          <Grid
+            item
+            xs={12}
+            container
+            justify="center"
+            style={{ textAlign: "center" }}
+          >
             <OutlinedDropDown
               id="method"
               name="methodIndex"
@@ -97,7 +112,22 @@ export default class CentivizeUI extends React.Component {
           </Grid>
 
           <Grid item xs={12} container justify="center">
-            <SNETImageUpload imageName="" imageDataFunc={this.getImageData} instantUrlFetch={true} allowURL={true} />
+            {/* input goes here
+             */}
+            <form className={classes.root} noValidate autoComplete="off">
+              <TextField
+                label="Centivize input 1"
+                placeholder="centivize placeholder 1"
+                multiline
+                variant="outlined"
+              />
+              <TextField
+                label="Centivize input 2"
+                placeholder="centivize placeholder 2"
+                multiline
+                variant="outlined"
+              />
+            </form>
           </Grid>
 
           <Grid item xs container justify="flex-end">
@@ -116,7 +146,10 @@ export default class CentivizeUI extends React.Component {
               </HoverIcon>
             </Grid>
             <Grid item>
-              <HoverIcon text="View original project" href={this.state.reference}>
+              <HoverIcon
+                text="View original project"
+                href={this.state.reference}
+              >
                 <SvgIcon>
                   <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 11.701c0 2.857-1.869 4.779-4.5 5.299l-.498-1.063c1.219-.459 2.001-1.822 2.001-2.929h-2.003v-5.008h5v3.701zm6 0c0 2.857-1.869 4.779-4.5 5.299l-.498-1.063c1.219-.459 2.001-1.822 2.001-2.929h-2.003v-5.008h5v3.701z" />
                 </SvgIcon>
@@ -125,7 +158,12 @@ export default class CentivizeUI extends React.Component {
           </Grid>
 
           <Grid item xs={12} container justify="center">
-            <Button variant="contained" color="primary" onClick={this.submitAction} disabled={!this.canBeInvoked()}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.submitAction}
+              disabled={!this.canBeInvoked()}
+            >
               Invoke
             </Button>
           </Grid>
@@ -147,12 +185,19 @@ export default class CentivizeUI extends React.Component {
     return (
       <Grid style={{ background: "#F8F8F8", padding: "24px" }}>
         <h4> Results</h4>
-        <Grid style={{ padding: "10px 10px 0 10px", fontSize: "14px", color: "#9b9b9b" }}>
+        <Grid
+          style={{
+            padding: "10px 10px 0 10px",
+            fontSize: "14px",
+            color: "#9b9b9b",
+          }}
+        >
           <Grid style={{ padding: "10px 0", borderBottom: "1px solid #eee" }}>
             Status: <span style={{ color: "#212121" }}>{response.status}</span>
           </Grid>
           <Grid style={{ padding: "10px 0", borderBottom: "1px solid #eee" }}>
-            Time : <span style={{ color: "#212121" }}>{response.delta_time}</span>
+            Time :{" "}
+            <span style={{ color: "#212121" }}>{response.delta_time}</span>
           </Grid>
           <Grid style={{ padding: "10px 0" }}>
             Output:
