@@ -7,7 +7,6 @@ import { FormControl } from "@material-ui/core";
 
 import HoverIcon from "../../standardComponents/HoverIcon";
 import OutlinedDropDown from "../../common/OutlinedDropdown";
-import SNETImageUpload from "../../standardComponents/SNETImageUpload";
 
 import { Centivize } from "./centivize_pb_service";
 
@@ -115,6 +114,22 @@ export default class CentivizeUI extends React.Component {
             {/* input goes here
              */}
             <form className={classes.root} noValidate autoComplete="off">
+              <FormControl className={classes.formControl}>
+                <InputLabel id="demo-simple-select-helper-label">
+                  Dropdown
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-helper-label"
+                  id="demo-simple-select-helper"
+                  value={age}
+                  onChange={handleChange}
+                >
+                  <MenuItem value={10}>idk</MenuItem>
+                  <MenuItem value={20}>idk number 2</MenuItem>
+                </Select>
+                <FormHelperText>Info about this dropdown</FormHelperText>
+              </FormControl>
+
               <TextField
                 label="Text field uno"
                 multiline
