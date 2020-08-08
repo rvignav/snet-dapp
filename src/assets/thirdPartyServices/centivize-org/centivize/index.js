@@ -75,12 +75,17 @@ export default class CentivizeUI extends React.Component {
     const methodDescriptor = Centivize[methodNames[methodIndex].content];
     const request = new methodDescriptor.requestType();
 
+    // set request paragraph(s) here
+    // refer to line 15-31 in centivize_pb_service.js 
     request.setImgPath(img_path);
     request.setModel("ResNet152");
 
     const props = {
       request,
       onEnd: ({ message }) => {
+        // HTTP response here
+        // destructuring to extract message from response
+        // refer to line 44 in centivize_pb_service.js
         this.setState({
           ...initialUserInput,
           response: {
