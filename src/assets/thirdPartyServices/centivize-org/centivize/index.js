@@ -39,7 +39,6 @@ export default class CentivizeUI extends React.Component {
     super(props);
     this.submitAction = this.submitAction.bind(this);
     this.handleFormUpdate = this.handleFormUpdate.bind(this);
-    this.getImageData = this.getImageData.bind(this);
 
     this.state = {
       ...initialUserInput,
@@ -61,10 +60,6 @@ export default class CentivizeUI extends React.Component {
     return false;
   }
 
-  getImageData(data) {
-    this.setState({ img_path: data });
-  }
-
   handleFormUpdate(event) {
     // set state to be one of two
     this.setState({ [event.target.name]: event.target.value });
@@ -77,8 +72,11 @@ export default class CentivizeUI extends React.Component {
 
     // set request paragraph(s) here
     // refer to line 15-31 in centivize_pb_service.js 
-    request.setImgPath(img_path);
-    request.setModel("ResNet152");
+
+    // request.Paragraph = new Paragraph(this.state.par_1, 11)
+
+    // request.setImgPath(img_path);
+    // request.setModel("ResNet152");
 
     const props = {
       request,
@@ -94,6 +92,7 @@ export default class CentivizeUI extends React.Component {
             delta_time: message.getDeltaTime(),
           },
         });
+        console.log(this.state.response)
       },
     };
 

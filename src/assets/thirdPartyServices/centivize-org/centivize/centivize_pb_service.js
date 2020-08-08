@@ -3,7 +3,7 @@
 
 /*eslint-disable */
 
-var example_service_pb = require("./centivize_pb");
+var centivize_pb = require("./centivize_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
 var Centivize = (function () {
@@ -17,8 +17,8 @@ Centivize.summarize = {
   service: Centivize,
   requestStream: false,
   responseStream: false,
-  requestType: example_service_pb.Paragraph,
-  responseType: example_service_pb.Summary
+  requestType: centivize_pb.Paragraph,
+  responseType: centivize_pb.Summary
 };
 
 Centivize.similarity = {
@@ -26,8 +26,8 @@ Centivize.similarity = {
   service: Centivize,
   requestStream: false,
   responseStream: false,
-  requestType: example_service_pb.Paragraphs,
-  responseType: example_service_pb.Similarity
+  requestType: centivize_pb.Paragraphs,
+  responseType: centivize_pb.Similarity
 };
 
 exports.Centivize = Centivize;

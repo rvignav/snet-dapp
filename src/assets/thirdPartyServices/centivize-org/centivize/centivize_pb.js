@@ -51,6 +51,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 example_service_centivize_org_centivize.Paragraph = function(opt_data) {
+  console.log("OPT_DATA: " + opt_data)
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(example_service_centivize_org_centivize.Paragraph, jspb.Message);
