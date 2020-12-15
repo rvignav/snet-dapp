@@ -1,5 +1,6 @@
 // package: centivize_service
 // file: centivize_service.proto
+/*eslint-disable */
 
 var centivize_service_pb = require("./centivize_service_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;

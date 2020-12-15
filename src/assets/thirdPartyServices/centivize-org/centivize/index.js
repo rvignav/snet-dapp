@@ -13,7 +13,7 @@ import Select from "@material-ui/core/Select";
 import HoverIcon from "../../standardComponents/HoverIcon";
 import OutlinedDropDown from "../../common/OutlinedDropdown";
 
-import { Centivize } from "./centivize_pb_service";
+import { Centivize } from "./centivize_service_pb_service";
 
 const initialUserInput = {
   methodIndex: "0",
@@ -66,7 +66,7 @@ export default class CentivizeUI extends React.Component {
   }
 
   submitAction() {
-    const { methodIndex, methodNames, img_path } = this.state;
+    const { methodIndex, methodNames, par_1, par_2 } = this.state;
     const methodDescriptor = Centivize[methodNames[methodIndex].content];
     const request = new methodDescriptor.requestType();
 
@@ -75,22 +75,43 @@ export default class CentivizeUI extends React.Component {
 
     // request.Paragraph = new Paragraph(this.state.par_1, 11)
 
-    // request.setImgPath(img_path);
-    // request.setModel("ResNet152");
+    if (methodIndex == 0) {
+      request.setPar(par_1);
+      request.setNum(11);
+    } else {
+      request.setPar1(par_1);
+      request.setPar2(par_2);
+    }
+    
+
+    // const props = {
+    //   request,
+    //   onEnd: ({ message }) => {
+    //     // HTTP response here
+    //     // destructuring to extract message from response
+    //     // refer to line 44 in centivize_pb_service.js
+    //     this.setState({
+    //       ...initialUserInput,
+    //       response: {
+    //         status: "Success",
+    //         top_5: message.getTop5(),
+    //         delta_time: message.getDeltaTime(),
+    //       },
+    //     });
+    //     console.log(this.state.response)
+    //   },
+    // };
 
     const props = {
       request,
-      onEnd: ({ message }) => {
-        // HTTP response here
-        // destructuring to extract message from response
-        // refer to line 44 in centivize_pb_service.js
+      onEnd: response => {
+        const { message, status, statusMessage } = response;
+        if (status !== 0) {
+          throw new Error(statusMessage);
+        }
         this.setState({
           ...initialUserInput,
-          response: {
-            status: "Success",
-            top_5: message.getTop5(),
-            delta_time: message.getDeltaTime(),
-          },
+          response: { status: "success", top5: message.getValue() },
         });
         console.log(this.state.response)
       },
@@ -188,13 +209,6 @@ export default class CentivizeUI extends React.Component {
 
   renderComplete() {
     const { response } = this.state;
-    let top5 = response.top_5;
-    let topArray = ["No response!"];
-    if (top5 && typeof top5 === "string") {
-      top5 = top5.replace("{", "");
-      top5 = top5.replace("}", "");
-      topArray = top5.split(", ");
-    }
 
     return (
       <Grid style={{ background: "#F8F8F8", padding: "24px" }}>
@@ -224,15 +238,8 @@ export default class CentivizeUI extends React.Component {
                 borderRadius: "4px",
               }}
             >
-              {topArray.map((elem, idx) => {
-                return (
-                  <Grid key={idx}>
-                    <span key={idx} style={{ color: "#212121" }}>
-                      {elem}
-                    </span>
-                  </Grid>
-                );
-              })}
+            {" "}
+            <span style={{ color: "#212121" }}>{response.top5}</span>
             </Grid>
           </Grid>
         </Grid>
