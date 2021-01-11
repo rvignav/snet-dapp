@@ -336,7 +336,7 @@ centivize_service.Paragraph.deserializeBinaryFromReader = function(msg, reader) 
       msg.setPar(value);
       break;
     case 2:
-      var value = /** @type {number} */ (reader.readInt32());
+      var value = /** @type {number} */ (reader.readFloat());
       msg.setNum(value);
       break;
     default:
@@ -377,7 +377,7 @@ centivize_service.Paragraph.serializeBinaryToWriter = function(message, writer) 
   }
   f = message.getNum();
   if (f !== 0) {
-    writer.writeInt32(
+    writer.writeFloat(
       2,
       f
     );
@@ -404,7 +404,7 @@ centivize_service.Paragraph.prototype.setPar = function(value) {
 
 
 /**
- * optional int32 num = 2;
+ * optional float num = 2;
  * @return {number}
  */
 centivize_service.Paragraph.prototype.getNum = function() {

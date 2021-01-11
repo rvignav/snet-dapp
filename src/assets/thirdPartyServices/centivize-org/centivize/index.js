@@ -77,7 +77,11 @@ export default class CentivizeUI extends React.Component {
 
     if (methodIndex == 0) {
       request.setPar(par_1);
-      request.setNum(11);
+      if (this.state.par_2) {
+        request.setNum(parseFloat(par_2));
+      } else {
+        request.setNum(0.5);
+      }
     } else {
       request.setPar1(par_1);
       request.setPar2(par_2);
@@ -150,16 +154,16 @@ export default class CentivizeUI extends React.Component {
                 rows={4}
                 variant="filled"
                 onChange={this.handleFormUpdate}
-                style={{marginRight: (this.state.methodIndex === "0" ? "0" : "2em")}}
+                style={{marginRight: "2em"}}
               />
               <TextField
                 name="par_2"
-                label="Paragraph 2"
+                label = {this.state.methodIndex === "0" ? "Percent Len (default: 0.5)" : "Paragraph 2"}
                 multiline
                 rows={4}
                 variant="filled"
                 onChange={this.handleFormUpdate}
-                style={{display: (this.state.methodIndex === "0" ? "none" : "inline-block")}}
+                style={{display:  "inline-block"}}
               />
             </form>
           </Grid>

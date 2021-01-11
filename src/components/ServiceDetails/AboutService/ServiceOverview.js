@@ -12,8 +12,8 @@ const ServiceOverview = ({ classes, description, tags }) => {
         Centivize offers two services: an NLP transformer-based summary service, and a paragraph-to-vector similarity
         score calculator. <br />
         <br />
-        As part of our summary service, users can upload the path to a file containing long paragraph and, optionally, a
-        number from 1-20 specifying the level of summarization to be performed (the default number is 11). Our algorithm
+        As part of our summary service, users can enter a long paragraph and, optionally, a
+        float from 0-1 specifying the percent of the original paragraph that the summary length should be (the default number is 0.5). Our algorithm
         then outputs the shortened summary of that paragraph. <br />
         <br />
         As part of our similarity score calculator, users can upload two paragraphs, and our algorithm calculates the
